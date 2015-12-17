@@ -144,11 +144,47 @@ int find_loop( node * head ) {
         printf("\nEmpty List");
         return 0;
     } else {
+        node * fast_ptr = head;
+        node * slow_ptr = head;
 
+        while( fast_ptr != NULL && slow_ptr != NULL ) {
+            fast_ptr = fast_ptr->next;
+            if( fast_ptr != NULL ) 
+                fast_ptr = fast_ptr->next
+            slow_ptr = slow_ptr->next
+
+            if( slow_ptr == fast_ptr ) {
+                printf("There is a loop");
+                return 1;
+            }
+        }
     }
+    return 0;
 }
 
 // Find Mid
+node * find_loop( node * head ) {
+    if( head == NULL ) {
+        printf("Head NULL");
+        return NULL;
+    } else if( head->next == NULL ) {
+        printf("\nEmpty List");
+        return NULL;
+    } else {
+        node * fast_ptr = head;
+        node * slow_ptr = head;
+
+        while( fast_ptr != NULL) {
+            fast_ptr = fast_ptr->next;
+            if( fast_ptr != NULL )
+                fast_ptr = fast_ptr->next
+            slow_ptr = slow_ptr->next
+            }
+            return slow_ptr;
+        }
+    }
+    return NULL;
+}
 
 // Linked List in Reverse Order
 
@@ -174,4 +210,23 @@ int find_loop( node * head ) {
 // Program to find the n'th node from end of the linked list
 
 // Find Length of Linked List
+int find_legth( node * head ) {
+    int length = 0;
+    if( head == NULL ) {
+        printf("Head NULL");
+        return 0;
+    } else if( head->next == NULL ) {
+        printf("\nEmpty List");
+        return 0;
+    } else {
+        node * fast_ptr = head;
+
+        while( fast_ptr != NULL) {
+                fast_ptr = fast_ptr->next;
+                length++;
+            }
+            return length;
+    }
+    return 0;
+}
 
