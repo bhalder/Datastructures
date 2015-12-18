@@ -94,6 +94,28 @@ void insert_last( node * head, node * new_node ) {
     }
 }
 
+// delete node
+
+void delete_node( node * head, node * delete_this ) {
+     if( head == NULL ) {
+        printf("\nHead NULL");
+        return;
+    } else if ( head->next == NULL ) {
+        head->next = new_node;
+        return;
+    } else {
+        node * cur_node = head->next;
+        while( cur_node->next != NULL || cur_node->next != delete_this ) {
+            cur_node = cur_node->next;
+        } 
+
+        if( current_node->next == delete_this ) {
+            current_node->next = current_node->next->next;
+            free( current_node->next);
+        }
+
+}
+
 // delete last node 
 void delete_last( node * head) {
     if( head == NULL ) {
@@ -192,28 +214,49 @@ node * find_loop( node * head ) {
 
 // Reverse a Linked List using Recurstion
 
-// Reverse everty k nodes of a linked list
+// Reverse every k nodes of a linked list
 // Example : 1-2-3-4-5-6; k = 2; 2-1-4-3-6-5
 
 // Merge Linked Lists at alternate positions
 node  * merge_alternate( node * head1, node * head2 ){
-    if( head1 == NULL || head2 == NULL ) {
-        printf("\nError : Head NULL");
-        return;
-    } else {
-        node * tmp1 = head1;
-        node * tmp2 = head2;
-        while(tmp1 != NULL || tmp2 != NULL ) {
-            
-        }
-    }
 } 
 
 // Move Last Node to front
+void move_to_front( node * head ) {
 
-// Swap Every two nodes in a linked list
+    if( head == NULL ) {
+        printf("Head NULL");
+        return 0;
+    } else if( head->next == NULL ) {
+        printf("\nEmpty List");
+        return 0;
+    } else {
+        node * temp = head;
+        while( temp->next->next != NULL ) {
+            temp = temp->next; 
+        }
+        head->next = temp->next;
+        temp->next = NULL;
+    }
+}
 
 // Delete Alternate Nodes of a linked List 
+void delete_alternate( node * head ) {
+     if( head == NULL ) {
+        printf("Head NULL");
+        return 0;
+    } else if( head->next == NULL ) {
+        printf("\nEmpty List");
+        return 0;
+    } else {
+        node * ptr = head;
+        while( ptr->next != NULL ) {
+            node * tmp = ptr->next;
+            ptr->next = ptr->next->next;
+            free( tmp );
+        }            
+    }  
+}
 
 // Frequency of a given Number in a linked List
 int find_frequency( node * head, int test_number ) {
@@ -256,11 +299,41 @@ int insert_sorted( node * head, node * new_node ) {
             }
         return count;
     }
-
 }
 
 
 // Program to find the n'th node from end of the linked list
+node * find_nth(node * head, int n) {
+    int cnt = 0;
+    if( head == NULL ) {
+        printf("Head NULL");
+        return NULL;
+    } else if( head->next == NULL ) {
+        printf("\nEmpty List");
+        return NULL;
+    } else {
+        node * fast = head;
+        node * slow = head;
+        
+        while ( fast != NULL ) {
+            fast = fast->next;
+            cnt++;
+            if( cnt == n ) {
+                break;
+            }
+        }
+
+        if( cnt != n ) {
+            return NULL;
+        }
+     
+        while(fast != NULL ) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        return slow;
+    } 
+}
 
 // Find Length of Linked List
 int find_legth( node * head ) {
