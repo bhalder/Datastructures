@@ -196,6 +196,18 @@ node * find_loop( node * head ) {
 // Example : 1-2-3-4-5-6; k = 2; 2-1-4-3-6-5
 
 // Merge Linked Lists at alternate positions
+node  * merge_alternate( node * head1, node * head2 ){
+    if( head1 == NULL || head2 == NULL ) {
+        printf("\nError : Head NULL");
+        return;
+    } else {
+        node * tmp1 = head1;
+        node * tmp2 = head2;
+        while(tmp1 != NULL || tmp2 != NULL ) {
+            
+        }
+    }
+} 
 
 // Move Last Node to front
 
@@ -204,8 +216,49 @@ node * find_loop( node * head ) {
 // Delete Alternate Nodes of a linked List 
 
 // Frequency of a given Number in a linked List
+int find_frequency( node * head, int test_number ) {
+    int count = 0;
+    if( head == NULL ) {
+        printf("Head NULL");
+        return 0;
+    } else if( head->next == NULL ) {
+        printf("\nEmpty List");
+        return 0;
+    } else {
+        node * ptr = head;
+
+        while( ptr != NULL) {
+                ptr = ptr->next;
+                if( ptr != NULL && ptr->data == test_number )
+                    count++;
+            }
+        return count;
+    }
+
+}
 
 // Insert nodes into a linked list in a sorted fashion
+int insert_sorted( node * head, node * new_node ) {
+    if( head == NULL ) {
+        printf("Head NULL");
+        return 0;
+    } else if( head->next == NULL ) {
+        head->next = new_node;
+        return 0;
+    } else {
+        node * ptr = head;
+
+        while( ptr->next != NULL) {
+                ptr = ptr->next;
+                if(ptr->next->data >= new_node->data && ptr->data =< new_node->data )
+                new_node->next = ptr->next;
+                ptr->next = new_node;
+            }
+        return count;
+    }
+
+}
+
 
 // Program to find the n'th node from end of the linked list
 
