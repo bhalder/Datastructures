@@ -185,7 +185,7 @@ int find_loop( node * head ) {
 }
 
 // Find Mid
-node * find_loop( node * head ) {
+node * find_mid( node * head ) {
     if( head == NULL ) {
         printf("Head NULL");
         return NULL;
@@ -208,17 +208,69 @@ node * find_loop( node * head ) {
     return NULL;
 }
 
+// sort list
+
+void sort_list( node* head) {
+
+    if( head == NULL ) {
+        printf("\nHead is NULL");
+    } else if( head->next == NULL ) {
+        printf("\nList is empty");
+    } else { // ver1.0 : Bubble Sort here.
+        int length = find_length( head );
+        node * cur = head;
+        node * min_node = NULL;
+        if( length > 0 ) {
+            for( int i = 0; i < length; i++ ) {
+                for(int j = 0; j < length-i; j++) {
+                    min_node = find_min(cur);
+                    if( min_node != NULL ) {
+                        move_after( head, cur, min_node);
+                        cur = min_node;
+                    } else {
+                        printf("\nERROR : Sort List Failure. Exiting");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+
+node * find_min( node * n ) {
+    if( n == NULL ) {
+        printf("\nERROR : node is NULL. Cannot find the min.");
+        return NULL;
+    } else if ( n->next == NULL ) {
+        printf("\nERROR : the list is empty. Cannot find min.");
+        return NULL;
+    } else {
+        int min = 10000000; // MAGIC Number :'(
+        node * cur = n;
+        node * min_node = NULL;
+        while( cur != NULL ) {
+            cur = cur->next;
+            if( cur->data < min ) {
+                min_node = cur;
+                min = cur->data;
+            }
+        }
+        return min_node;
+    }
+} 
+
 // Linked List in Reverse Order
 
 // Remove Duplicates from the List
 
-// Reverse a Linked List using Recurstion
+// Reverse a Linked List using Recursion
 
 // Reverse every k nodes of a linked list
 // Example : 1-2-3-4-5-6; k = 2; 2-1-4-3-6-5
 
 // Merge Linked Lists at alternate positions
 node  * merge_alternate( node * head1, node * head2 ){
+    return NULL;
 } 
 
 // Move Last Node to front
@@ -239,6 +291,35 @@ void move_to_front( node * head ) {
         temp->next = NULL;
     }
 }
+
+// Move a node after another node 
+void move_after( node * head, node * node1, node * node2 ) {
+
+    if( head == NULL ) {
+        printf("NULL head");
+        return;
+    } else if( node1 == NULL || node2 == NULL ) {
+        printf("NODE NULL");
+        return 0;
+    } else {
+        // Find the node before node2 - tmp1
+        node * tmp = head;
+        while(tmp != NULL ) {
+            tmp = tmp->next;
+            if( tmp->next == node2 ) {
+                break; 
+            }
+        }
+        if( tmp != NULL ) {
+            tmp->next = node2->next;
+            node2->next = node1->next;
+            node1->next = node2;
+        } else {
+            printf("\nERROR : node2 not in list");
+        }
+    }
+}
+
 
 // Delete Alternate Nodes of a linked List 
 void delete_alternate( node * head ) {
