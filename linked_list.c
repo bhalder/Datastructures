@@ -263,6 +263,27 @@ node * find_min( node * n ) {
 
 // Remove Duplicates from the List
 
+void remove_duplicates( node * head ) {
+    if( head == NULL ) {
+        printf("\nERROR : Head is NULL");
+        return;
+    } else if ( head->next == NULL ) {
+        printf("\nERROR : List is NULL");
+    } else {
+        sort_list(head);
+        node * cur = head;
+
+        while( cur != NULL ) {
+            cur = cur->next;
+            if( cur->data == cur->next->data) {
+                node * tmp = cur->next->next;
+                free( cur->next);
+                cur->next = tmp;
+            }
+        }
+    }
+}
+
 // Reverse a Linked List using Recursion
 
 // Reverse every k nodes of a linked list
